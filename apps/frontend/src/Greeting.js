@@ -1,27 +1,33 @@
 import React, { Component } from 'react';
 import { isNullOrWhitespace } from '@football/validator';
+import io from 'socket.io-client';
+
+// Make Connection
+const socket = io(`http://localhost:8081`)
 
 export class Greeting extends Component {
     state = {
         name: ''
     }
+    
 
+    onTyping = () => {
+
+    }
     onSubmit = () => {
         const {name} = this.state;
         if (isNullOrWhitespace(name)) {
             alert('Please, type your name first.');
             return;
         }
-
-        fetch(`/greeting?name=${name}`)
-            .then(response => response.json())
-            .then(({message}) => this.setState({message, error: null}))
-            .catch(error => this.setState({error}));
+        socket.emit('chat', name)
+         // Listen for events
+        socket.on('chat', (data)=>{this.setState({message: `Hey ${data}` })});
     }
+    
 
     render() {
         const {name, message, error} = this.state;
-        console.log(this.state);
         return (
             <div style={{padding: '10px'}}>
                 {message && <div style={{fontSize: '50px'}}>{message}</div>}

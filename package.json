@@ -2,7 +2,9 @@
   "name": "root",
   "private": true,
   "dependencies": {
-    "lerna": "^3.15.0"
+    "lerna": "^3.15.0",
+    "socket.io": "^2.2.0",
+    "socket.io-client": "^2.2.0"
   },
   "scripts": {
     "start": "lerna run start --parallel",
