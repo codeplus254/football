@@ -1,13 +1,25 @@
 import React from 'react';
-import {Greeting} from './Greeting';
+import {Header } from './components/header/Header';
+import {Footer} from './components/footer/Footer';
+import {Row, Col, Container } from 'react-bootstrap';
 
 function App() {
   return (
-    <div className="App">
+    <>
       <header className="App-header">
-        <Greeting />
+        <Header />
       </header>
-    </div>
+      
+      
+      <div className="content">
+        <div className="row row-header">
+          <h2>Do you have a bio for your company?</h2>
+          <p> Contact us today and get seen online </p>
+          
+        </div>
+      </div>
+      <Footer />
+    </>
   );
 }
 
