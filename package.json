@@ -2,6 +2,7 @@
   "name": "root",
   "private": true,
   "dependencies": {
+    "bootstrap": "^4.3.1",
     "d3": "^5.9.7",
     "dotenv": "^8.0.0",
     "font-awesome": "^4.7.0",
