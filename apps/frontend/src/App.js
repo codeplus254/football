@@ -1,7 +1,6 @@
 import React from 'react';
 import {Header } from './components/header/Header';
 import {Footer} from './components/footer/Footer';
-import {Row, Col, Container } from 'react-bootstrap';
 
 function App() {
   return (
@@ -11,10 +10,11 @@ function App() {
       </header>
       
       
-      <div className="content">
-        <div className="row row-header">
+      <div className="content center">
+        <div >
           <h2>Do you have a bio for your company?</h2>
-          <p> Contact us today and get seen online </p>
+          <p> Something coming up soon!!! </p>
+          <p> Be seen </p>
           
         </div>
       </div>
