@@ -1,70 +1,62 @@
 import React, { Component } from 'react';
-import { Jumbotron, Row, Col, Container } from 'react-bootstrap';
+import { Jumbotron, Container } from 'react-bootstrap';
+import { Header } from './../mini-website/header.js';
+import { Navigation } from './../mini-website/navigation.js';
+import { About } from './../mini-website/about.js';
+import { Home } from './../mini-website/home.js';
+import { Portfolio } from './../mini-website/portfolio.js';
+import { Contact } from './../mini-website/contact.js';
+import { Footer } from './../mini-website/footer.js';
 import './jumbotron.css';
 
 
 export class Jumbo extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {currentPage: 'About'};
+    };
+  componentDidMount() {
+      const pages = ['Home', 'Portfolio', 'About', 'Contact'];
+      this.interval = setInterval(() => this.setState({ currentPage: pages[(Math.random() * pages.length) | 0] }), 10000);
+  }
+
+  componentDidUpdate() {
+    let component = <Home />;
+    switch(this.state.currentPage) {
+      case 'Home':
+        return <Home />;
+      case 'About':
+        return <About />;
+      case 'Contact':
+        return <Contact />;
+      default:
+        return <Portfolio />;
+    }  
+  }
+
   render() {
+    let component;
+    switch(this.state.currentPage) {
+        case 'Home':
+          component = <Home />;
+          break;
+        case 'About':
+          component = <About />;
+          break;
+        case 'Contact':
+          component = <Contact />;
+          break;
+        default:
+          component = <Portfolio />;
+          break;
+      }
     return (
-<Jumbotron>
-          <Container className="miniWebsite">
-            <Row className="miniHeader">
-              <Col md={2} >
-                <div className="typewriter">
-                  <div className="typewriter-logo">LOGO</div>
-                </div>
-                
-              </Col>
-              <Col md={8}>
-                <div className="typewriter">
-                      <div className="typewriter-text">Your Business Name</div>
-                </div>
-                
-              </Col>
-              <Col md={2}>
-                Login/Register
-              </Col>
-            </Row>
-            <Row className="miniTaskbar">
-              <Col md= {3} >
-                HOME
-              </Col>
-              <Col md= {3}>
-                PORTFOLIO
-              </Col>
-              <Col md= {3} className="border border-danger">
-                ABOUT ME
-              </Col>
-              <Col md= {3}>
-                CONTACT ME
-              </Col>
-            </Row>
-            <Row>
-              <Col md={3}>
-                <div> Your picture goes here </div>
-              </Col>
-              <Col md={9}>
-                <div className="miniWebpage">
-                  <p>
-                    Hello world, meet your next and last graphic designer.
-                  </p>
-                  <p>
-                    My name is Doreen Designs, like literally. I have more than five years experience in the digital world. Primarily, 
-                    I design visually-intuitive posters for events eg. corporate fairs, end-year parties etc. However, I also come up
-                    with website mockups, not forgetting company logos.
-                  </p>
-                  <p>Here's my favourite quote: </p> 
-                  <p>"Design adds value faster than it adds costs." <span><b>--Joel Spolsky</b></span></p>
-                  </div>
-              </Col>
-            </Row>
-            <Row>
-                <Col className="miniFooter">
-                  <div >
-                    <p> &copy; All Rights Reserved 2019.</p>
-                  </div>
-                </Col>
-              </Row>  
+        <Jumbotron >
+          <Container className="miniWebsite" >
+            <Header /> 
+            <Navigation selected={this.state.currentPage}/>
+            {component}
+            <Footer /> 
           </Container>
         </Jumbotron>
     );
